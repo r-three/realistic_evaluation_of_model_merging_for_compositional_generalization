@@ -1,0 +1,6 @@
+{
+    "template_idx": -2,
+    "instruction_format": "p3",
+    "split": "train",
+    "max_number_of_samples": -1
+}

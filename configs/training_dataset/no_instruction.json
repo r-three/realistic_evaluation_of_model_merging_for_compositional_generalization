@@ -1,0 +1,5 @@
+{
+    "split": "train",
+    "max_number_of_samples": -1,
+    "instruction_format": "no_instructions"
+}

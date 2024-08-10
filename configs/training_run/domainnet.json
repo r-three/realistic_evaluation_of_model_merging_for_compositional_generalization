@@ -1,0 +1,13 @@
+{
+    "train_batch_size": 128,
+    "num_batches": 1000,
+    "optimizer": "adamw",
+    "use_early_stopping": true,
+    "early_stopping_num_checkpoints_without_improvement": 5,
+    "lr": 2e-5,
+    "checkpoint_frequency": 50,
+    "use_fp16_during_training": true,
+    "seed": 42,
+    "should_eval_before_training": true,
+    "should_eval_validation": true
+}

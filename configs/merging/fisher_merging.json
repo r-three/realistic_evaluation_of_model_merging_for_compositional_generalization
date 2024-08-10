@@ -1,0 +1,6 @@
+{
+    "method": "fisher_merging",
+    "fisher_approximation": "diagonal",
+    "split_to_compute_statistic": "validation",
+    "save_model": true
+}

@@ -1,0 +1,7 @@
+{
+    "split": "validation",
+    "instruction_format": "no_instructions",
+    "max_number_of_samples": -1,
+    "shift_lbls": true
+}
+

@@ -1,0 +1,6 @@
+{
+    "method": "regmean",
+    "fisher_approximation": "input_activations_covariance",
+    "split_to_compute_statistic": "validation",
+    "save_model": true
+}

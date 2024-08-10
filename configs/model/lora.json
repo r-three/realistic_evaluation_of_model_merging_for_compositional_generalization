@@ -1,0 +1,7 @@
+{
+    "peft_method": "lora",
+    "load_in_4_bit": true,
+    "lora_r": 8,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05
+}

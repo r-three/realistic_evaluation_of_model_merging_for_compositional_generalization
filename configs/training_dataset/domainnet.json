@@ -1,0 +1,7 @@
+{
+    "split": "train",
+    "instruction_format": "no_instructions",
+    "dataset": "domainnet",
+    "shift_lbls": false,
+    "max_number_of_samples": -1
+}

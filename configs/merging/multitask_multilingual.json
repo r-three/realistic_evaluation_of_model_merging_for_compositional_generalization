@@ -1,0 +1,4 @@
+{
+    "task_mixture": "multitask_multilingual",
+    "checkpoint_descriptor": "baseline"
+}

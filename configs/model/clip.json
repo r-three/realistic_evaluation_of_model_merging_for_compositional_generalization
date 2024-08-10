@@ -1,0 +1,5 @@
+{
+    "language_or_vision": "vision",
+    "pretrained_model": "ViT-B-32",
+    "pretraining_mixture": "laion2b_s34b_b79k"
+}

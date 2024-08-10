@@ -1,0 +1,5 @@
+{
+    "pretrained_model": "models/google/mt5-xl-lm-adapt",
+    "max_seq_len": 512,
+    "language_or_vision": "language"
+}
