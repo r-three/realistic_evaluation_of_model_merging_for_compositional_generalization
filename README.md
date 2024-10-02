@@ -15,12 +15,12 @@ source env/bin/activate
 python -m pip install -r requirements.txt -f https://download.pytorch.org/whl/cu113/torch_stable.html
 ```
 
-A modified version of Promptsource must be installed from source. 
+A modified version of [Promptsource](https://github.com/dptam/promptsource) must be installed from source. 
 ```
 cd promptsource 
 python -m pip install -e . 
 ```
-Download multilingual ROUGE scorer from `https://github.com/csebuetnlp/xl-sum/tree/master/multilingual_rouge_scoring`
+Download multilingual ROUGE scorer from [https://github.com/csebuetnlp/xl-sum/tree/master/multilingual_rouge_scoring](https://github.com/csebuetnlp/xl-sum/tree/master/multilingual_rouge_scoring)
 ```
 git clone https://github.com/csebuetnlp/xl-sum.git
 cd multilingual_rouge_scoring
@@ -29,7 +29,7 @@ python -m pip install -r requirements.txt
 python -m pip install .
 mv io_original.py io.py 
 ```
-A modified version of open_clip must be installed from source. 
+A modified version of [open_clip](https://github.com/dptam/open_clip) must be installed from source. 
 ```
 cd open_clip
 python -m pip install -e . 
@@ -148,7 +148,7 @@ git init
 git theta track 
 ```
 
-Follow the instructions at `https://github.com/blester125/git-theta/tree/feat/merge-cli/plugins/merge_cli` to start using `git-theta`. 
+Follow the instructions at [https://github.com/blester125/git-theta/tree/feat/merge-cli/plugins/merge_cli](https://github.com/blester125/git-theta/tree/feat/merge-cli/plugins/merge_cli) to start using `git-theta`. 
 
 
 ### Evaluation 
@@ -171,10 +171,17 @@ python src/eval/inference.py -c configs/model/mt5_xl_lm_adapt.json  configs/eval
 ```
 
 ### Released Checkpoints 
-The domainnet and cross lingual checkpoints can be found here: 
+The domainnet and cross lingual checkpoints can be found here: [https://console.cloud.google.com/storage/browser/realistic_evaluation_model_merging_compositional_generalization](https://console.cloud.google.com/storage/browser/realistic_evaluation_model_merging_compositional_generalization)
 We also include a Pytorch version of mT5-xl-lm-adapt already converted from the default Jax format. 
 
 ## Citation
 
 If you find this repo helpful, feel free to cite our work:
-
+```
+@article{tam2024remm,
+  title={Realistic Evaluation of Model Merging for Compositional Generalization},
+  author={Tam, Derek and Kant, Yash and Lester, Brian and Gilitschenski, Igor and Raffel, Colin},
+  journal={arXiv preprint arXiv:2409.18314},
+  year={2024}
+}
+```
