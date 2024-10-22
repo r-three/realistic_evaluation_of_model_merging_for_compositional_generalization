@@ -78,7 +78,7 @@ Run the `training` script with
 
 Cross Lingual: 
 ```
-python src/train/training.py -c configs/model/mt5_xl_lm_adapt.json configs/model/full_model.json  configs/training_run/cross_lingual.json     configs/training_dataset/p3.json  configs/evaluation_dataset/p3.json configs/evaluation_run/language.json  -tr micro_train_batch_size=2  train_dataset_mixture=multitask_multilingual -er eval_batch_size=4  dataset_mixture=multitask_multilingual
+python src/train/training.py -c configs/model/mt5_xl_lm_adapt.json configs/model/full_model.json  configs/training_run/cross_lingual.json     configs/training_dataset/p3.json  configs/evaluation_dataset/p3.json configs/evaluation_run/language.json  -tr micro_train_batch_size=2  train_task_mixture=multitask_multilingual -er eval_batch_size=4  task_mixture=multitask_multilingual
 ```
 
 ```
@@ -109,7 +109,7 @@ python src/train/training.py -c configs/model/clip.json configs/training_run/dom
 ```
 All Domains
 ```
-python src/train/training.py -c configs/model/clip.json configs/training_run/domainnet.json configs/training_dataset/domainnet_all.json configs/evaluation_dataset/domainnet_all.json configs/evaluation_run/vision.json -tr micro_train_batch_size=128 train_dataset_mixture=domainnet num_batches=10000 should_eval_before_training=False -er eval_batch_size=256 dataset_mixture=domainnet
+python src/train/training.py -c configs/model/clip.json configs/training_run/domainnet.json configs/training_dataset/domainnet_all.json configs/evaluation_dataset/domainnet_all.json configs/evaluation_run/vision.json -tr micro_train_batch_size=128 train_task_mixture=domainnet num_batches=10000 should_eval_before_training=False -er eval_batch_size=256 task_mixture=domainnet
 ```
 
 
