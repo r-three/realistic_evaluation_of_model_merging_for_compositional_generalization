@@ -65,7 +65,7 @@ TASK_MIXTURES = {
             ("tydiqa", "thai"),
             ("tydiqa", "arabic"),
         ],
-        "dataset_ratios": [1] * 17,
+        "dataset_ratios": [1] * 15,
     },
 }
 
@@ -138,7 +138,42 @@ def sample_subset(
     return sampled_elements
 
 
-def getTasks_inMixture(task_mixture: str | List) -> List[str]:
+def _validate_task(task: Any, all_datasets: List[str]):
+    if isinstance(task, str):
+        assert task in all_datasets
+    else:
+        dataset_update_dict = getDatasetUpdateDict_fromTask(task)
+        assert dataset_update_dict["dataset"] in all_datasets
+
+
+def _apply_subset_toMixture(
+    tasks: List[Any],
+    ratios: List[int],
+    mixture_subsetSize: int | None,
+    mixtureSubset_id: int | None,
+) -> tuple[List[Any], List[int]]:
+    if mixture_subsetSize is None:
+        return tasks, ratios
+
+    assert mixture_subsetSize > 0
+    assert mixture_subsetSize <= len(tasks)
+    assert mixtureSubset_id is not None
+
+    subset_indices = sample_subset(
+        list(range(len(tasks))),
+        numberOfElements_toSample=mixture_subsetSize,
+        subset_id=mixtureSubset_id,
+    )
+    subset_tasks = [tasks[i] for i in subset_indices]
+    subset_ratios = [ratios[i] for i in subset_indices]
+    return subset_tasks, subset_ratios
+
+
+def getTasks_inMixture(
+    task_mixture: str | List,
+    mixture_subsetSize: int | None = None,
+    mixtureSubset_id: int | None = None,
+) -> List[str]:
     """
     Args:
         task_mixture:
@@ -147,26 +182,38 @@ def getTasks_inMixture(task_mixture: str | List) -> List[str]:
         task_mixture
     """
     all_datasets = get_allDatasets()
+    actual_taskMixture = None
+    actual_taskRatios = None
     # If task_mixture is a list, then check that each dataset in list is valid.
     if isinstance(task_mixture, list):
         for dataset in task_mixture:
-            assert dataset in all_datasets
-            actual_taskMixture = task_mixture
-
-        return actual_taskMixture
+            _validate_task(dataset, all_datasets)
+        actual_taskMixture = task_mixture
+        actual_taskRatios = [1] * len(actual_taskMixture)
     # If task_mixture is a string, then we look up the dataset mixture.
     elif task_mixture in TASK_MIXTURES.keys():
-
         actual_taskMixture = TASK_MIXTURES[task_mixture]["dataset_names"]
-
-        return actual_taskMixture
+        actual_taskRatios = TASK_MIXTURES[task_mixture]["dataset_ratios"]
     # task_mixture might be just one dataset
     else:
         assert task_mixture in all_datasets
-        return [task_mixture]
+        actual_taskMixture = [task_mixture]
+        actual_taskRatios = [1]
+
+    actual_taskMixture, _ = _apply_subset_toMixture(
+        actual_taskMixture,
+        actual_taskRatios,
+        mixture_subsetSize,
+        mixtureSubset_id,
+    )
+    return actual_taskMixture
 
 
-def getTaskRatios_inMixture(task_mixture: str | List) -> List[int]:
+def getTaskRatios_inMixture(
+    task_mixture: str | List,
+    mixture_subsetSize: int | None = None,
+    mixtureSubset_id: int | None = None,
+) -> List[int]:
     """
     Args:
         task_mixture:
@@ -177,25 +224,33 @@ def getTaskRatios_inMixture(task_mixture: str | List) -> List[int]:
         task_mixture_ratios
     """
     all_datasets = get_allDatasets()
+    actual_taskMixture = None
+    actual_taskRatios = None
     # If task_mixture is a list, then check that each dataset in list is valid.
     if isinstance(task_mixture, list):
         for dataset in task_mixture:
-            assert dataset in all_datasets
-
+            _validate_task(dataset, all_datasets)
         actual_taskMixture = task_mixture
-        return [1] * len(actual_taskMixture)
+        actual_taskRatios = [1] * len(actual_taskMixture)
 
     # If task_mixture is a string, then we look up the dataset mixture.
     elif task_mixture in TASK_MIXTURES.keys():
-
+        actual_taskMixture = TASK_MIXTURES[task_mixture]["dataset_names"]
         actual_taskRatios = TASK_MIXTURES[task_mixture]["dataset_ratios"]
-
-        return actual_taskRatios
 
     # task_mixture might be just one dataset
     else:
         assert task_mixture in all_datasets
-        return [1.0]
+        actual_taskMixture = [task_mixture]
+        actual_taskRatios = [1]
+
+    _, actual_taskRatios = _apply_subset_toMixture(
+        actual_taskMixture,
+        actual_taskRatios,
+        mixture_subsetSize,
+        mixtureSubset_id,
+    )
+    return actual_taskRatios
 
 
 class TaskMixtureReader(object):

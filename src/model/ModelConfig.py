@@ -32,12 +32,24 @@ class ModelConfig(Config):
 
         self.pretraining_mixture = None
         self.pretrained_model = None
+        self.architecture = None
         self.max_seq_len = None
 
         self.filepath_to_load_model = None
 
         self.freeze_backbone = None
         self.language_or_vision = None
+
+        # Quantization / PEFT arguments
+        self.load_in_4_bit = None
+        self.peft_method = None
+        self.lora_r = None
+        self.lora_alpha = None
+        self.lora_dropout = None
+        self.merge_lora = None
+        self.merge_ia3 = None
+        self.load_merged_lora = None
+        self.load_merged_ia3 = None
 
         self.clip_load_classification_head = None
 
@@ -75,6 +87,6 @@ class ModelConfig(Config):
             experiment_dir = os.path.join(experiment_dir, self.pretraining_mixture)
 
         if self.freeze_backbone:
-            experiment_dir = os.path.join(experiment_dir, "freze_backbone")
+            experiment_dir = os.path.join(experiment_dir, "freeze_backbone")
 
         return experiment_dir
