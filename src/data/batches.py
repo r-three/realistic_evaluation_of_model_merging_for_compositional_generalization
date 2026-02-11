@@ -2,10 +2,8 @@ from typing import Any, Callable, Dict, List
 
 import torch
 from torch.utils import data
-from torch.utils.data.distributed import DistributedSampler
 
 from src.data.Dataset import LanguageDataset
-from src.utils.distributed import is_distributedSetup
 
 
 def _create_dataLoader(
@@ -54,7 +52,7 @@ def getMultipleEpochs_ofBatches(
     Yields:
         batch of data
     """
-    data_loader = _create_dataLoader(pytorch_dataset, batch_size, should_shuffle)
+    _, data_loader = _create_dataLoader(pytorch_dataset, batch_size, should_shuffle)
 
     while True:
         for x in data_loader:

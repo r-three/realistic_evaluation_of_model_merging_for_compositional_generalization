@@ -1455,7 +1455,4 @@ class P3_XQuADReader(P3_DatasetReader):
 
 
 if __name__ == "__main__":
-    import ipdb
-
-    ipdb.set_trace()
     data = load_dataset(*("wiki_lingua", "italian"), split="train")

@@ -33,6 +33,7 @@ def checkpointing(
     training_config: TrainingConfig,
     cached_datasetReaders: Dict[str, DatasetReader],
     batch_idx: int,
+    device,
 ) -> (int, Dict[str, DatasetReader]):
     logging.info(f"Evaluating checkpoint")
 
@@ -161,9 +162,9 @@ def train(device, training_config: TrainingConfig):
             if not set(initial_checkpoint.keys()).issubset(
                 set(model.state_dict().keys())
             ):
-                import ipdb
-
-                ipdb.set_trace()
+                raise ValueError(
+                    "Checkpoint keys are not a subset of model state dict keys."
+                )
 
             model.load_state_dict(initial_checkpoint, strict=False)
 

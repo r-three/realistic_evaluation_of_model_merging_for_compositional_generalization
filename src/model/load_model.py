@@ -114,9 +114,9 @@ def loadParameters_intoModel(
         modelStateDict_keys = set(model.state_dict().keys())
 
         if not modelParameters_names.issubset(modelStateDict_keys):
-            import ipdb
-
-            ipdb.set_trace()
+            raise ValueError(
+                "Loaded parameter keys are not a subset of model state dict keys."
+            )
         model.load_state_dict(parameters, strict=False)
 
     return model

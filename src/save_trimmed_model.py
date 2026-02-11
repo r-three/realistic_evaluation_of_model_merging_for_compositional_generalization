@@ -135,7 +135,9 @@ def compute_trimmed_model(
         )
         del task_vector
 
-        flattened_trimmed_model = trim(flattened_task_vector.cuda(), K=0.8)
+        flattened_trimmed_model = trim(
+            flattened_task_vector.cuda(), percent_to_drop=0.8
+        )
         flattened_trimmed_model = flattened_trimmed_model.contiguous()
 
         trimmed_model = convert_tensor_to_checkpoint(

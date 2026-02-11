@@ -12,8 +12,8 @@ from src.data.DatasetConfig import DatasetConfig
 
 def get_datasetReader(
     task_mixture: str,
-    mixtureSubset_size: str | None,
-    mixtureSubset_id: str | None,
+    mixtureSubset_size,
+    mixtureSubset_id,
     dataset_config: DatasetConfig,
     cached_singleDatasetReaders: Dict[str, DatasetReader],
 ) -> ((DatasetReader | TaskMixtureReader), Dict[str, DatasetReader]):

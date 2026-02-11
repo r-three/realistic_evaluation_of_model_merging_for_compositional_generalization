@@ -209,9 +209,9 @@ def load_trainingStateToResumeFrom(
     if not set(resumeTraining_dict["model"].keys()).issubset(
         set(model.state_dict().keys())
     ):
-        import ipdb
-
-        ipdb.set_trace()
+        raise ValueError(
+            "Resumed model keys are not a subset of model state dict keys."
+        )
 
     model.load_state_dict(resumeTraining_dict["model"], strict=False)
 

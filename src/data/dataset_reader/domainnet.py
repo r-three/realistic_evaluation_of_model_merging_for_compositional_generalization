@@ -615,6 +615,6 @@ if __name__ == "__main__":
             preprocess_class_label = class_lbl.replace("_", " ")
 
             if preprocess_class_label not in all_classes:
-                import ipdb
-
-                ipdb.set_trace()
+                raise ValueError(
+                    f"Class label not found in DomainNet categories: {preprocess_class_label}"
+                )

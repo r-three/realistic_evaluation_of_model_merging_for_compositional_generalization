@@ -23,6 +23,10 @@ class MergingConfig(Config):
 
         # task mixture to merge
         self.task_mixture = None
+        self.mixture_subset_size = None
+        self.mixture_subset_id = None
+        self.mixture_subset_min_id = None
+        self.mixture_subset_max_id = None
 
         # Whether to merge the PEFT weights (i.e. A and B in LoRA or IA3 into pretrained weight)
         self.merge_peft_weights = None

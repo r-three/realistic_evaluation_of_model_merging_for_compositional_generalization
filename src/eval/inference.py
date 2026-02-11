@@ -13,7 +13,6 @@ from src.eval.utils import saveResult_acrossTasks
 from src.model.load_model import *
 from src.model.ModelConfig import ModelConfig
 from src.utils.config_utils import *
-from src.utils.distributed import *
 from src.utils.io import *
 from src.utils.utils import *
 
