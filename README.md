@@ -171,8 +171,7 @@ python src/eval/inference.py -c configs/model/mt5_xl_lm_adapt.json  configs/eval
 ```
 
 ### Released Checkpoints 
-The domainnet and cross lingual checkpoints can be found here: [https://console.cloud.google.com/storage/browser/realistic_evaluation_model_merging_compositional_generalization](https://console.cloud.google.com/storage/browser/realistic_evaluation_model_merging_compositional_generalization)
-We also include a Pytorch version of mT5-xl-lm-adapt already converted from the default Jax format. 
+The domainnet and cross lingual checkpoints can be found here: [https://huggingface.co/r-three/remm-domainnet](https://huggingface.co/r-three/remm-domainnet) and [https://huggingface.co/r-three/remm-multilingual](https://huggingface.co/r-three/remm-multilingual) respectively. 
 
 ## Citation
 
